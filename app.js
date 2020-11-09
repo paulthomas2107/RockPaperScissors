@@ -27,40 +27,51 @@ function convertChoiceToType(choice) {
 }
 
 function win(userChoice, computerChoice) {
+  const smallUserWord = "user".fontsize(3).sub();
+  const smallCompWord = "comp".fontsize(3).sub();
+  const userChoice_div = document.getElementById(userChoice);
   userScore++;
   userScore_span.innerHTML = userScore;
   computerScore_span.innerHTML = computerScore;
-  const smallUserWord = "user".fontsize(3).sub();
-  const smallCompWord = "comp".fontsize(3).sub();
   result_p.innerHTML = `${convertChoiceToType(
     userChoice
   )}${smallUserWord} beats ${convertChoiceToType(
     computerChoice
-    )}${smallCompWord}. You Win 🔥`;
-  
+  )}${smallCompWord}. You Win 🔥`;
+  userChoice_div.classList.add("green-glow");
+  setTimeout(() => userChoice_div.classList.remove("green-glow"), 300);
 }
 
 function fail(userChoice, computerChoice) {
+  const smallUserWord = "user".fontsize(3).sub();
+  const smallCompWord = "comp".fontsize(3).sub();
+  const computerChoice_div = document.getElementById(computerChoice);
   computerScore++;
   userScore_span.innerHTML = userScore;
   computerScore_span.innerHTML = computerScore;
-  const smallUserWord = "user".fontsize(3).sub();
-  const smallCompWord = "comp".fontsize(3).sub();
   result_p.innerHTML = `${convertChoiceToType(
     userChoice
   )}${smallUserWord} loses to ${convertChoiceToType(
     computerChoice
   )}${smallCompWord}. You Lost 💩`;
+  computerChoice_div.classList.add("red-glow");
+  setTimeout(() => computerChoice_div.classList.remove("red-glow"), 300);
 }
 
 function draw(userChoice, computerChoice) {
   const smallUserWord = "user".fontsize(3).sub();
   const smallCompWord = "comp".fontsize(3).sub();
+  const userChoice_div = document.getElementById(userChoice);
+  const computerChoice_div = document.getElementById(computerChoice);
   result_p.innerHTML = `${convertChoiceToType(
     userChoice
   )}${smallUserWord} equals ${convertChoiceToType(
     computerChoice
   )}${smallCompWord}. You Draw 😄`;
+  setTimeout(() => userChoice_div.classList.add("gray-glow"), 300);
+  setTimeout(() => computerChoice_div.classList.add("gray-glow"), 300);
+  setTimeout(() => userChoice_div.classList.remove("gray-glow"), 300);
+  setTimeout(() => computerChoice_div.classList.remove("gray-glow"), 300);
 }
 
 function game(userChoice) {
